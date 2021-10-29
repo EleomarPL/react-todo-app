@@ -5,9 +5,10 @@ const useTasks = () => {
   const {todoS, setTodoS} = useContext(TodoSContext);
 
   const addTask = (task) => {
+    const id = todoS.length > 0 ? todoS[todoS.length - 1].id + 1 : 0;
     const newTodoS = [
       ...todoS,
-      {id: todoS.length, todo: task, isCompleted: false}
+      {id, todo: task, isCompleted: false}
     ];
 
     setTodoS(newTodoS);
@@ -25,8 +26,14 @@ const useTasks = () => {
 
     window.localStorage.setItem('todoS', JSON.stringify(newStateTodoS));
   };
+  const deleteTodo = (dataTodo) => {
+    let newStateTodoS = todoS.filter(todo => dataTodo.id !== todo.id);
+
+    setTodoS(newStateTodoS);
+    window.localStorage.setItem('todoS', JSON.stringify(newStateTodoS));
+  };
   return {
-    addTask, markCompletedTodo
+    addTask, markCompletedTodo, deleteTodo
   };
 };
 

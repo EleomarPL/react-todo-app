@@ -6,12 +6,15 @@ import useTasks from '../hooks/useTasks';
 const ShowTodosItems = ({dataTodo, setSearcher}) => {
 
   const [colorConfirm, setColorConfirm] = useState(dataTodo.isCompleted);
-  const {markCompletedTodo} = useTasks();
+  const {markCompletedTodo, deleteTodo} = useTasks();
 
   const handleConfirmTask = () => {
     setColorConfirm(!colorConfirm);
     markCompletedTodo(dataTodo);
     setSearcher('');
+  };
+  const handleDeleteTodo = () => {
+    deleteTodo(dataTodo);
   };
 
   return (
@@ -32,7 +35,7 @@ const ShowTodosItems = ({dataTodo, setSearcher}) => {
         }
       </div>
       <button type="button" style={ {color: 'red'} }
-        className="button-item"
+        className="button-item" onClick={ handleDeleteTodo }
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="16px"
           height="16px" fill="currentColor"
