@@ -5,8 +5,15 @@ import TodoSContext from '../context/TodoS';
 
 const ShowTodos = () => {
   const [filterTodoS, setFilterTodoS] = useState([]);
+  const [searcher, setSearcher] = useState('');
   const {todoS} = useContext(TodoSContext);
 
+  useEffect(() => {
+    if (searcher)
+      setFilterTodoS(todoS.filter(todo => todo.todo.slice(0, searcher.length) === searcher));
+    else
+      setFilterTodoS(todoS);
+  }, [searcher]);
   useEffect(() => {
     setFilterTodoS(todoS);
   }, [todoS]);
@@ -18,6 +25,7 @@ const ShowTodos = () => {
       <input
         type="search" placeholder="Search..."
         className="input-search"
+        value={ searcher } onChange={ (evt) => setSearcher(evt.target.value) }
       />
       <div style={ {maxHeight: '40vh', overflow: 'auto', marginTop: '1rem', width: '90%'} }>
         { filterTodoS.length > 0
