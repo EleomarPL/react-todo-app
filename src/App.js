@@ -1,6 +1,11 @@
+import { TodoSProvider } from './context/TodoS';
+import './styles/index.css';
+
 const App = () => {
   return (
-    <p>Hola mundo</p>
+    <TodoSProvider>
+      
+    </TodoSProvider>
   );
 };
 
