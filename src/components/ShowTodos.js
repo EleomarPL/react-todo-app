@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import '../styles/showTodos.css';
 import ShowTodosItems from './ShowTodosItems';
+import TodoSContext from '../context/TodoS';
 
 const ShowTodos = () => {
+  const [filterTodoS, setFilterTodoS] = useState([]);
+  const {todoS} = useContext(TodoSContext);
 
-  const [filterTodoS, setFilterTodoS] = useState([
-    { id: 1, todo: 'Create apps', isCompleted: false}
-  ]);
+  useEffect(() => {
+    setFilterTodoS(todoS);
+  }, [todoS]);
 
   return (
     <div className="container-show-todos">
