@@ -1,0 +1,38 @@
+.container-show-todos{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 30rem;
+  height: auto;
+  font-size: 1.5rem;
+}
+.input-search{
+  border-radius: 10px;
+  padding: 10px 15px;
+  width: 90%;
+  outline: none;
+  border: 2px solid transparent;
+
+  transition: border .2s ease-in-out;
+}
+.input-search:focus {
+  border: 2px solid black;
+}
+.todo-items{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+.button-item{
+  border: none;
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+  background-color: transparent;
+}
