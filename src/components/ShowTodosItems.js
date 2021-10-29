@@ -1,12 +1,17 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-const ShowTodosItems = ({dataTodo, setFilterTodoS}) => {
+import useTasks from '../hooks/useTasks';
+
+const ShowTodosItems = ({dataTodo, setSearcher}) => {
 
   const [colorConfirm, setColorConfirm] = useState(dataTodo.isCompleted);
+  const {markCompletedTodo} = useTasks();
 
   const handleConfirmTask = () => {
     setColorConfirm(!colorConfirm);
+    markCompletedTodo(dataTodo);
+    setSearcher('');
   };
 
   return (
@@ -41,7 +46,7 @@ const ShowTodosItems = ({dataTodo, setFilterTodoS}) => {
 
 ShowTodosItems.propTypes = {
   dataTodo: PropTypes.object.isRequired,
-  setFilterTodoS: PropTypes.func.isRequired
+  setSearcher: PropTypes.func.isRequired
 };
 
 export default ShowTodosItems;

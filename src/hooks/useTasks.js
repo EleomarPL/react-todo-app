@@ -9,12 +9,24 @@ const useTasks = () => {
       ...todoS,
       {id: todoS.length, todo: task, isCompleted: false}
     ];
-    
+
     setTodoS(newTodoS);
     window.localStorage.setItem('todoS', JSON.stringify(newTodoS));
   };
+  const markCompletedTodo = (dataTodo) => {
+    let newStateTodoS = todoS.map(todo => {
+      if (todo.id === dataTodo.id) {
+        return {
+          ...todo, isCompleted: !dataTodo.isCompleted
+        };
+      } else return todo;
+    });
+    setTodoS(newStateTodoS);
+
+    window.localStorage.setItem('todoS', JSON.stringify(newStateTodoS));
+  };
   return {
-    addTask
+    addTask, markCompletedTodo
   };
 };
 
